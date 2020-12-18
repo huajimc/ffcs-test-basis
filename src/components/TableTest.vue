@@ -215,7 +215,6 @@ export default {
       stateList: [],
       // 当前筛选的状态
       state: '',
-
       // 当前页数
       currentPage: 1,
       // 每页行数
@@ -296,8 +295,10 @@ export default {
     },
     // 点击修改按钮确认修改
     async updateTableClick(tableForm) {
+      console.log(this.tableForm.time);
       // console.log("点击修改按钮");
       this.dialogTableUpdate = false;
+      this.tableForm.time = this.dateFormat(this.tableForm.time);
       await api.updateTableData(tableForm).then((val) => {
         // console.log("修改成功");
         // console.log(val);
@@ -311,6 +312,7 @@ export default {
     // 添加行
     async insertTableClick(tableForm) {
       this.dialogTableInsert = false;
+      this.tableForm.time = this.dateFormat(this.tableForm.time);
       await api.insertTableData(tableForm).then((val) => {
         // console.log(val);
         this.$message({
@@ -380,6 +382,23 @@ export default {
       this.tableForm.object = '',
       this.tableForm.state = '',
       this.tableForm.time = ''
+    },
+    // 时间格式转换
+    dateFormat(datetime) {
+      let date = new Date(datetime)
+      let y = date.getFullYear()
+      let m = date.getMonth() + 1
+      m = m < 10 ? ('0' + m) : m
+      let d = date.getDate()
+      d = d < 10 ? ('0' + d) : d
+      let h = date.getHours()
+      h = h < 10 ? ('0' + h) : h
+      let min = date.getMinutes()
+      min = min < 10 ? ('0' + min) : min
+      let s = date.getSeconds()
+      s = s < 10 ? ('0' + s) : s
+      let time = y + '-' + m + '-' + d + ' ' + h + ':' + min + ':' + s
+      return time
     }
   }
 }
