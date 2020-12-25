@@ -8,6 +8,7 @@
 export default {
   beforeCreate() {
     document.querySelector("body").setAttribute("style", "margin:0px;min-height:100%");
+    document.querySelector("html").setAttribute("style", "min-height:100%");
   },
 }
 </script>
@@ -19,6 +20,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-height: 100%;
 }
 
 #nav {

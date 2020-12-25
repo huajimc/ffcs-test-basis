@@ -10,9 +10,14 @@ const routes = [
     component: resolve => require(["@/views/Layout.vue"], resolve),
     children: [
       {
-        path: "/",
-        name: "index",
+        path: "/TableTest",
+        name: "TableTest",
         component: resolve => require(["@/components/TableTest.vue"], resolve)
+      },
+      {
+        path: "/",
+        name: "TopicOne",
+        component: resolve => require(["@/components/TopicOne.vue"], resolve)
       }
     ]
   }
