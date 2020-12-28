@@ -29,7 +29,7 @@ export default {
 
 <style scoped>
 .el-container {
-  height: 100%;
+  min-height: 100%;
 }
 
 .el-header {

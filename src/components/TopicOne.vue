@@ -9,7 +9,7 @@
       <el-tab-pane label="指标看板" name="first">指标看板</el-tab-pane>
       <el-tab-pane label="告警信息" name="second">告警信息</el-tab-pane>
       <el-tab-pane label="监控列表" name="third">
-        <el-row :gutter="20">
+        <el-row :gutter="20" class="table-third">
           <el-col :span="4" class="table__button">
               <el-button  @click="dialogTableInsert = true" type="primary">新增监控</el-button>
               <span class="el-icon-s-tools" style="color:#999999;margin-left:10px"></span>
@@ -492,6 +492,12 @@ export default {
   }
   /deep/ .el-tabs__content {
     padding: 0 20px;
+  }
+}
+
+.el-table {
+  /deep/ td, th {
+    padding: 9px 0;
   }
 }
 
