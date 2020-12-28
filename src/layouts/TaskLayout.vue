@@ -28,6 +28,10 @@ export default {
 </script>
 
 <style scoped>
+.el-container {
+  height: 100%;
+}
+
 .el-header {
   background-color: #c4c4c4;
   color: #333;

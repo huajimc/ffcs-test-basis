@@ -31,4 +31,16 @@ _axios.interceptors.response.use(
   }
 );
 
+_axios.interceptors.request.use(
+  request => {
+    // 在发送请求之前做些什么
+    // request.withCredentials = true;
+    console.log(request)
+    return request;
+  }, 
+  error => {
+    // 对请求错误做些什么
+    return Promise.reject(error);
+});
+
 export default _axios;
