@@ -6,14 +6,19 @@
 
 <script>
 export default {
-  beforeCreate() {
-    document.querySelector("body").setAttribute("style", "margin:0px;min-height:100%");
-    document.querySelector("html").setAttribute("style", "min-height:100%");
-  },
 }
 </script>
 
 <style lang="scss">
+html {
+  min-height:100%;
+}
+
+body {
+  margin:0px;
+  min-height:100%;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

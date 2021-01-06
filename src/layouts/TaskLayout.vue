@@ -43,6 +43,7 @@ export default {
   background-color: #e8ebf0;
   width: 100%;
   margin: auto;
+  padding: 0;
 }
 
 .el-aside {

@@ -1,4 +1,5 @@
 <template>
+<div style="padding: 20px;">
   <div class="table">
     <el-row :gutter="20">
       <el-col :span="8">
@@ -185,6 +186,7 @@
       </el-col>
     </el-row>
   </div>
+</div>
 </template>
 
 <script>

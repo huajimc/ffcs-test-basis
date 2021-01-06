@@ -5,6 +5,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import axios from "axios";
+// import echarts from 'echarts'
 import { startMock } from './mock'
 
 startMock()
@@ -12,6 +13,7 @@ startMock()
 Vue.config.productionTip = false;
 
 Vue.prototype.$http = axios;
+Vue.prototype.$echarts = require('echarts');
 
 Vue.use(ElementUI);
 

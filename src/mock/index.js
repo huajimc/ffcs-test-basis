@@ -1,6 +1,7 @@
 import Mock from 'mockjs'
 import * as table from './table'
 import * as monitoring from './monitoring'
+import * as fault from './fault'
 
 /**
  * 启动前端MOCK
@@ -17,4 +18,5 @@ export function startMock() {
   Mock.mock(/\/mock\/insertMonitoringData/, "post", monitoring.insertmonitoring)
   Mock.mock(/\/mock\/updateMonitoringData/, "post", monitoring.updatemonitoring)
   Mock.mock(/\/mock\/getRowRules/, "post", monitoring.rowRules)
+  Mock.mock(/\/mock\/selectFaultData/, "get", fault.faultList)
 }

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div style="padding: 20px;">
   <el-breadcrumb separator-class="el-icon-arrow-right">
     <el-breadcrumb-item :to="{ path: '/TableTest' }">资源监控</el-breadcrumb-item>
     <el-breadcrumb-item>4G新装详情</el-breadcrumb-item>
