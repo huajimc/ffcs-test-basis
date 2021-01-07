@@ -1,8 +1,5 @@
 # test
 
-基础篇2+准备篇：http://localhost:9000/#/TableTest
-课题一：http://localhost:9000/#/
-
 ## Project setup
 ```
 yarn install

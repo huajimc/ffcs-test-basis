@@ -58,12 +58,12 @@
           </el-col>
           <el-col :span="10">
             <div>
-              <div class="panel-impact" name="1" v-for="item in subtypeList" :key="item.name">
+              <div class="panel-impact" name="1" v-for="(item, index) in subtypeList" :key="item.name">
                 <div @click="handleTags(item.name)">
                   <span :id="'icon-' + item.name" class="el-icon-arrow-down" aria-hidden="true"></span>
                   <span style="font-size:15px;margin-left:5px;">{{ item.name }}</span>
                 </div>
-                <div :id="item.name" style="height: 70px;width: 100%;"></div>
+                <div :id="item.name" v-show="isTagList[index].value" style="height: 70px;width: 100%;"></div>
               </div>
             </div>
           </el-col>
@@ -132,9 +132,6 @@ export default {
       subtypeTagList: []
     }
   },
-  // created() {
-  //   this.sockDate();
-  // },
   mounted () {
     this.sockDate();
     let _this = this;
@@ -156,9 +153,9 @@ export default {
       let isTag = false;
       if( document.getElementById('icon-' + id).className === "el-icon-arrow-down" ) {
         document.getElementById('icon-' + id).className = "el-icon-arrow-up";
-        isTag = true;
       } else {
         document.getElementById('icon-' + id).className = "el-icon-arrow-down";
+        isTag = true;
       }
       for( var tagNum = 0; tagNum < this.isTagList.length; tagNum++) {
         if(this.isTagList[tagNum].name === id) {
@@ -166,13 +163,6 @@ export default {
           break;
         }
       }
-      if(tagNum === this.isTagList.length) {
-        this.isTagList.push({
-          name: id,
-          value: isTag
-        })
-      }
-      // console.log(this.isTagList)
     },
     checkShow(id) {
       for(let tagNum = 0; tagNum < this.isTagList.length; tagNum++) {
@@ -238,6 +228,10 @@ export default {
             value: compareDate.filter((val) => {return val.subtype === subTypeName[j]}).length,
           })
         }
+        this.isTagList.push({
+          name: this.typeList[i],
+          value: true
+        })
       }
       // 故障影响资源Top5
       let tableNames = Array.from(new Set(compareDate.map(o => o.impact)))
@@ -255,7 +249,7 @@ export default {
       this.drawChart();
     },
     // 根据当天时间获取需求显示时间
-    async sockDate() {
+    sockDate() {
       this.endDate = this.getTime(0);
       if(this.rangeDate === "近15天") {
         this.beginDate = this.getTime(-15);
@@ -264,9 +258,9 @@ export default {
       } else if(this.rangeDate === "近90天") {
         this.beginDate = this.getTime(-90);
       }
-      console.log(this.beginDate)
+      // console.log(this.beginDate)
       // 刷新查找数据
-      await this.selectFaultData();
+      this.selectFaultData();
     },
     // 获取某一天的日期
     getTime(dayCount){
@@ -348,6 +342,7 @@ export default {
           }
         }]
       });
+      var dataList = this.typeDateList;
       // 绘制趋势图图标
       trendChart.setOption({
         tooltip: {
@@ -453,7 +448,18 @@ export default {
           orient: 'vertical',
           right: 'left',
           itemWidth: 14,
-          data: this.typeList
+          data: this.typeDateList,
+          formatter: function(name){
+            let value = 0;
+            let sum = 0;
+            for(let i = 0; i < dataList.length; i++) {
+              if(dataList[i].name === name) {
+                value = dataList[i].value;
+              }
+              sum += dataList[i].value;
+            }
+            return name + "  " + value + "  " + String(value/sum*100).substring(0,5) + "%";
+          }
         },
         series: [
           {
@@ -485,7 +491,6 @@ export default {
         let subtypeNameList = this.subtypeList[i].child.map(o => o.name);
         let subtypeDateList = this.subtypeList[i].child.map(o => o.value);
         this.subtypeTagList.push(myCharts)
-        console.log(this.subtypeTagList)
         myCharts.setOption({
           grid:{
             top:"5px",
@@ -657,5 +662,9 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+.panel-imapct--show {
+  margin-top: -80px;
 }
 </style>
