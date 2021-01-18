@@ -4,7 +4,7 @@
     <div style="padding:10px;">
       <el-row :gutter="15">
         <el-col :span="8" class="info">
-          <div v-show="!isNull"  style="height:200px;width:100%">
+          <div v-show="!isNull" id="echartsParent" style="height:200px;width:100%">
             <div ref="chartDom" style="height:150px;width:100%;margin-bottom: 10px;"></div>
             <span style="color:#ABACB2;fontsize:13px;">告警占比</span>
           </div>
@@ -140,11 +140,31 @@ export default {
           this.isNull = true;
           // element.innerHTML="<img src='@/image/generalSituationNoData.svg' alt='' />";
         } else {
+          this.setMychart();
           this.isNull = false;
           this.drawChart();
         }
         
       })
+    },
+    setMychart () {
+      //获取父元素
+      var echarts = document.getElementById('echartsParent');
+      //获取父元素宽高
+      var echartsWidth = this.getStyle(echarts,'width');
+      // var echartsHeight = this.getStyle(echarts,'height');
+      //获取图表元素
+      var myChart = this.$refs.chartDom;
+      //将父元素宽高赋值给图表
+      myChart.style.width = echartsWidth;
+      myChart.style.height = "150px";
+    },
+    getStyle (obj, attr) {
+      if (obj.currentStyle) {
+        return obj.currentStyle[attr];
+      } else {
+        return document.defaultView.getComputedStyle(obj,null)[attr];
+      }
     },
     drawChart(){
       // console.log(this.list);
