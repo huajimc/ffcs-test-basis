@@ -35,9 +35,13 @@ for(let i = 0; i < count; i++) {
       subtype: '',
       isSolve: '已解决',
       'solveTime|1-40': 40,
-      'impact|1': ['【服务】服开轮询接受接口', '【KEEPER集群】134.332.24.21|KEEPER_CRM集群', '【MYSQL集群】134.332.24.21|MYSQL_CRM集群', '【主机】BO_134.233.78.35', '【主机】BO_134.178.67.1']
+      'impact|1': ['【服务】服开轮询接受接口', 
+        '【KEEPER集群】134.332.24.21|KEEPER_CRM集群', 
+        '【MYSQL集群】134.332.24.21|MYSQL_CRM集群', 
+        '【主机】BO_134.233.78.35', 
+        '【主机】BO_134.178.67.1']
   }))
-  // 判断故障子类型
+  // 根据故障的类型 随机故障的子类型
   if(mockList[index].type === 'LaaS') {
     mockList[index].subtype = Mock.mock({'subtype|1': ['主机', '防火墙', '交换机']}).subtype
   } else if (mockList[index].type === 'PaaS') {
@@ -45,11 +49,11 @@ for(let i = 0; i < count; i++) {
   } else if (mockList[index].type === 'SaaS') {
     mockList[index].subtype = Mock.mock({'subtype|1': ['应用', '场景', '服务']}).subtype
   }
-  // 随机概率使结果生成某一天产生多故障的情况
+  // 表示一天出现多故障的情况
   if(Mock.mock({"number|1-3": 3}).number !== 1) {
     i--;
   }
-  // 模拟数据故障发生3天以内的故障，有出现未解决故障的情况
+  // 模拟数据故障发生3天以内的故障，有出现还未解决故障的情况
   if(i < 3) {
     mockList[index].isSolve = Mock.mock({'isSolve|1': ['已解决', '未解决']}).isSolve
   }

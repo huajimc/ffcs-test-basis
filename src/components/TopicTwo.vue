@@ -258,7 +258,6 @@ export default {
       } else if(this.rangeDate === "近90天") {
         this.beginDate = this.getTime(-90);
       }
-      // console.log(this.beginDate)
       // 刷新查找数据
       this.selectFaultData();
     },

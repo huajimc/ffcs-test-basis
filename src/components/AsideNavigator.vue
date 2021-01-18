@@ -17,6 +17,12 @@
     <el-menu-item index="/TopicTwo">
       <span slot="title">课题二</span>
     </el-menu-item>
+    <el-menu-item index="/TopicThree">
+      <span slot="title">课题三</span>
+    </el-menu-item>
+    <!-- <el-menu-item index="/Test">
+      <span slot="title">测试</span>
+    </el-menu-item> -->
   </el-menu>
 </template>
 

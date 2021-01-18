@@ -2,6 +2,7 @@ import Mock from 'mockjs'
 import * as table from './table'
 import * as monitoring from './monitoring'
 import * as fault from './fault'
+import * as UnifiedMonitoring from './UnifiedMonitoring'
 
 /**
  * 启动前端MOCK
@@ -19,4 +20,8 @@ export function startMock() {
   Mock.mock(/\/mock\/updateMonitoringData/, "post", monitoring.updatemonitoring)
   Mock.mock(/\/mock\/getRowRules/, "post", monitoring.rowRules)
   Mock.mock(/\/mock\/selectFaultData/, "get", fault.faultList)
+  Mock.mock(/\/mock\/getSubtypeByType/, "post", UnifiedMonitoring.getSubtypeByType)
+  Mock.mock(/\/mock\/getNumberByType/, "post", UnifiedMonitoring.getNumberByType)
+  Mock.mock(/\/mock\/getNumberByLevel/, "post", UnifiedMonitoring.getNumberByLevel)
+  Mock.mock(/\/mock\/getNumberByDate/, "post", UnifiedMonitoring.getNumberByDate)
 }

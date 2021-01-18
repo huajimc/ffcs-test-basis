@@ -23,6 +23,16 @@ const routes = [
         path: "/TopicTwo",
         name: "TopicTwo",
         component: resolve => require(["@/components/TopicTwo.vue"], resolve)
+      },
+      {
+        path: "/TopicThree",
+        name: "TopicThree",
+        component: resolve => require(["@/components/TopicThree.vue"], resolve)
+      },
+      {
+        path: "/Test",
+        name: "Test",
+        component: resolve => require(["@/components/Test.vue"], resolve)
       }
     ]
   }

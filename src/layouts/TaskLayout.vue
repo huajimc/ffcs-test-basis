@@ -29,7 +29,7 @@ export default {
 
 <style scoped>
 .el-container {
-  min-height: 100%;
+  background-color: #e8ebf0;
 }
 
 .el-header {
@@ -41,9 +41,10 @@ export default {
 
 .el-main {
   background-color: #e8ebf0;
-  width: 100%;
   margin: auto;
   padding: 0;
+  width: 100%;
+  box-sizing:border-box;
 }
 
 .el-aside {
